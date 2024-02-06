@@ -1,0 +1,13 @@
+language: python
+python:
+  - "3.8"
+env:
+  global:
+    secure: zIDo+5EZ8HKgv6Erjlik8AJXnZdhOBqvZ/EnKzBRFzXaT+Yv3knOqk9L7RZNIuI9T14tsEprDxm4NvmDwZdCtK0NX6Asje4maJ4sjcMB0CewDG3+1XPXOIVDUuJA0/5N/XZpfwrfQuKq1+5NxF0laigAQelACKe7yBjgv4HL8xQGjOj0jLboUmDEw+JE7fnW2X1LGEhdQ8Y3nBAnT/9hLNQwphUuRMxCnqCBM3Z2lQ1CezM2rzJx8uTmv/GQQBhsioE9ACvcHZ4In2GBHJubTaPf9FC3wj3qLZCd9AeuGreDNdZXqMLM0PbzIZzxS07X53xEQXsIBaiDrdxU5GIY0IFuMDa8vJ5DZoXZZXtEAOPAyuWyVuTfvYb3t9aiT+lxEFeclfJYF2ob96Uz6IWYtc0LQJNkRA5OULY5cgjcv2o6myVgUn1P4Sbwii8s2H09A/c2H/HZx5VGlm6qtERkV6zaxpYQj6KfT+inzgyj1yGECLDAtXw8xZlq0rjpLAKL+x2t9XKo2BeEpj8Ol3k+BtXU8uZlTccrYKj7PcA8wLsjS9T3bQG1M2N1z2jP0hQ71+0xbSJOfb7Bbq1XcNiW0xibVI5BBgkOKm6ualCY7XAyJ69lgz2Hbh9aVjfZki54v/MsZ0TA5xvfQeCnV0TU7jnhYcZ6YmwxdhcTQGyCNTw=
+
+before_install:
+  - echo "$KEY" | base64 -d > decrypted_variable.txt
+
+script:
+  - DECRYPTED_VALUE=$(<decrypted_variable.txt)
+  - if [ "$DECRYPTED_VALUE" == "test" ]; then echo "Decoded variable is correct"; else echo "Decoded variable is incorrect"; fi
